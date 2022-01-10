@@ -35,7 +35,7 @@ def func(tokens={}):
 
 
 def import_module(tokens={}):
-    if tokens.imports.length >= 1:
+    if len(tokens.imports) >= 1:
         return f'{tokenize(IMPORT.MULTIPLE, tokens).trim()}\n'
     else:
         return f'{tokenize(IMPORT.SIGLE, tokens).trim()}\n'

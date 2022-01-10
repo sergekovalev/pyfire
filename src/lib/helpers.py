@@ -1,4 +1,4 @@
-import settings
+import src.lib.settings as settings
 import os
 
 
@@ -6,7 +6,7 @@ def import_module(path):
     with open(path, 'r') as f:
         file = f.read()
     
-    if file[file.length - 1] != '\n':
+    if file[len(file) - 1] != '\n':
         file += '\n'
     
     return file

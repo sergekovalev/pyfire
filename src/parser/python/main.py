@@ -1,4 +1,4 @@
-from tokenizer import tokenize
+from src.parser.python.tokenizer import tokenize
 
 parsed_code = []
 
@@ -79,7 +79,7 @@ def main(code):
     try:
         return {
             'start': 0,
-            'end': code.length,
+            'end': len(code),
             **parse(code)
         }
     except Exception:

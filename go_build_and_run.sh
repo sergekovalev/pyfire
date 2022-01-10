@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "building...\n"
-python src/main.py file samples/code.py
+python src/main.py
 
 echo "running...\n"
 go run __dist__/main/main.go

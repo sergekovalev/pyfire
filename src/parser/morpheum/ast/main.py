@@ -60,6 +60,3 @@ def main(code):
     except Exception:
         print(Exception)
         exit()
-
-
-module.exports = main

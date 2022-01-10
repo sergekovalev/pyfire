@@ -1,4 +1,4 @@
-import tokens as TOKENS
+import src.parser.morpheum.tokens as TOKENS
 
 pairs = {
     'number': [TOKENS.TYPE_DECLARATION, TOKENS.NUMBER],

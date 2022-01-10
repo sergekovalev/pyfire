@@ -1,4 +1,4 @@
-import templates
+import src.translator.go.templates as templates
 
 
 def translate(code):
