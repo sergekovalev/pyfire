@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "building...\n"
+echo "building..."
 python src/main.py
 
-echo "running...\n"
+echo "running..."
 go run __dist__/main/main.go

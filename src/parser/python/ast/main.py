@@ -32,7 +32,7 @@ def tree(code):
     index_from = 0
     index_to = 0
 
-    for i in range(code):
+    for i in range(len(code)):
         token = code[i]
 
         if token == TOKENS.ENDL:
@@ -48,15 +48,11 @@ def tree(code):
 def ast(code):
     return {
         'type': 'module',
-        'start': code.start,
-        'end': code.end,
-        'body': tree(code.tokens)
+        'start': code['start'],
+        'end': code['end'],
+        'body': tree(code['tokens'])
     }
 
 
 def main(code):
-    try:
-        return ast(code)
-    except Exception:
-        print(Exception)
-        exit()
+    return ast(code)

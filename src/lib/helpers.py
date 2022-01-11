@@ -1,5 +1,6 @@
-import src.lib.settings as settings
+from src.lib.settings import Settings
 import os
+import re
 
 
 def import_module(path):
@@ -14,16 +15,19 @@ def import_module(path):
 
 def log(path='', folder='', content=''):
     if folder:
-        os.mkdir(f'{settings.ROOT_DIR}/__dist__/{folder}')
+        os.mkdir(f'{Settings().ROOT_DIR}/__dist__/{folder}')
     
-    with open(f'{settings.ROOT_DIR}/__dist__/{folder + "/"}{path}') as f:
+    with open(f'{Settings().ROOT_DIR}/__dist__/{folder + "/"}{path}', 'w') as f:
         f.write(content)
 
 
 def tokenize(text, tokens):
-    # Object.keys(tokens).forEach(key= > text = text.replace(new RegExp(`{{?${key} ?}}`, 'gi'), tokens[key]));
+    new_text = text
     
-    return text
+    for k, v in tokens.items():
+        new_text = re.sub(f'{{{{ {k} }}}}', v, new_text)
+    
+    return new_text
 
 
 class Empty(object):

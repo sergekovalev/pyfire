@@ -44,8 +44,4 @@ def tokenize(code):
 
 
 def main(code):
-    try:
-        return tokenize(code)
-    except Exception:
-        print(Exception)
-        exit()
+    return tokenize(code)

@@ -6,8 +6,4 @@ def translate(code):
 
 
 def main(code):
-    try:
-        return translate(code)
-    except Exception:
-        print(Exception)
-        exit()
+    return translate(code)

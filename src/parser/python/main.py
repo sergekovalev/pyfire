@@ -47,9 +47,8 @@ def parse(code):
     previous_char_code = None
     lines_count = 0
     
-    for i in range(code):
-        ch = code[i]
-        char_code = ch
+    for ch in code:
+        char_code = ord(ch)
         
         if is_sign(char_code) and not is_number(char_code):
             push(word, char_code, previous_char_code)
@@ -76,12 +75,8 @@ def parse(code):
 
 
 def main(code):
-    try:
-        return {
-            'start': 0,
-            'end': len(code),
-            **parse(code)
-        }
-    except Exception:
-        print(Exception)
-        exit()
+    return {
+        'start': 0,
+        'end': len(code),
+        **parse(code)
+    }

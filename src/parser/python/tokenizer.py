@@ -21,11 +21,11 @@ pairs = {
 
 
 def map_token(ch):
-    token = pairs[ch]
+    token = pairs[ch] if ch in pairs.keys() else None
     
     if token:
-        if token.before or token.after:
-            return token.before + ch + token.after
+        if type(token) is dict and (token['before'] or token['after']):
+            return token['before'] + ch + token['after']
         
         return token
     
@@ -42,8 +42,4 @@ def tokenize(code):
 
 
 def main(code):
-    try:
-        return tokenize(code)
-    except Exception:
-        print(Exception)
-        exit()
+    return tokenize(code)

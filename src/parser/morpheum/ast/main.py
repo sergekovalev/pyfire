@@ -55,8 +55,4 @@ def ast(code):
 
 
 def main(code):
-    try:
-        return ast(code)
-    except Exception:
-        print(Exception)
-        exit()
+    return ast(code)

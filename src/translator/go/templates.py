@@ -1,4 +1,4 @@
-from lib.helpers import tokenize
+from src.lib.helpers import tokenize
 
 MAIN_FUNC = '''
 package {{ package }}
@@ -27,7 +27,7 @@ import (
 
 
 def main_func(tokens={}):
-    return f'{tokenize(MAIN_FUNC, tokens).trim()}\n',
+    return f'{tokenize(MAIN_FUNC, tokens).strip()}\n'
 
 
 def func(tokens={}):
