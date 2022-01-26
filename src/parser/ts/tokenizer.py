@@ -1,9 +1,8 @@
-import src.parser.morpheum.tokens as TOKENS
+import src.parser.ts.tokens as TOKENS
 
 pairs = {
     'number': [TOKENS.TYPE_DECLARATION, TOKENS.NUMBER],
     'string': [TOKENS.TYPE_DECLARATION, TOKENS.STRING],
-    'var': [TOKENS.VARIABLE_DECLARATION],
     'import': [TOKENS.IMPORT],
     'function': [TOKENS.FUNCTION_DECLARATION],
     '=': [TOKENS.EQ],
@@ -15,18 +14,21 @@ pairs = {
     '+': [TOKENS.PLUS],
     '-': [TOKENS.MINUS],
     ';': [TOKENS.ENDL],
-    'end': [TOKENS.END_OF_BLOCK],
-    '(': [TOKENS.ARGS_LIST_START],
-    ')': [TOKENS.ARGS_LIST_END]
+    '{': [TOKENS.OPEN_CURLY_BRACKET],
+    '}': [TOKENS.CLOSE_CURLY_BRACKET],
+    '(': [TOKENS.OPEN_BRACKET],
+    ')': [TOKENS.CLOSE_BRACKET],
+    '\'': [TOKENS.SINGLE_QUOTE],
+    '"': [TOKENS.DOUBLE_QUOTE],
 }
 
 
 def map_token(ch):
-    token = pairs[ch]
+    token = pairs[ch] if ch in pairs.keys() else None
     
     if token:
-        if token.before or token.after:
-            return token.before + ch + token.after
+        if type(token) is dict and (token['before'] or token['after']):
+            return token['before'] + ch + token['after']
         
         return token
     

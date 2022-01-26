@@ -1,4 +1,4 @@
-from src.parser.morpheum.tokenizer import tokenize
+from src.parser.ts.tokenizer import tokenize
 
 parsed_code = []
 
@@ -47,9 +47,9 @@ def parse(code):
     previous_char_code = None
     lines_count = 0
     
-    for i in range(code):
+    for i in range(len(code)):
         ch = code[i]
-        char_code = ch
+        char_code = ord(ch)
         
         if is_sign(char_code) and not is_number(char_code):
             push(word, char_code, previous_char_code)

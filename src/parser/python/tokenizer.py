@@ -4,7 +4,7 @@ pairs = {
     'number': [TOKENS.TYPE_DECLARATION, TOKENS.NUMBER],
     'string': [TOKENS.TYPE_DECLARATION, TOKENS.STRING],
     'import': [TOKENS.IMPORT],
-    'function': [TOKENS.FUNCTION_DECLARATION],
+    'def': [TOKENS.FUNCTION_DECLARATION],
     '=': [TOKENS.EQ],
     '==': [TOKENS.IS_EQ],
     '>': [TOKENS.GT],
@@ -15,8 +15,12 @@ pairs = {
     '-': [TOKENS.MINUS],
     ';': [TOKENS.ENDL],
     'end': [TOKENS.END_OF_BLOCK],
-    '(': [TOKENS.ARGS_LIST_START],
-    ')': [TOKENS.ARGS_LIST_END]
+    '{': [TOKENS.OPEN_CURLY_BRACKET],
+    '}': [TOKENS.CLOSE_CURLY_BRACKET],
+    '(': [TOKENS.OPEN_BRACKET],
+    ')': [TOKENS.CLOSE_BRACKET],
+    '\'': [TOKENS.SINGLE_QUOTE],
+    '"': [TOKENS.DOUBLE_QUOTE],
 }
 
 
