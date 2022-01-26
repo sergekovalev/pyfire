@@ -1,29 +1,9 @@
 from src.lib.helpers import tokenize
+from src.translator.go.patterns import MODULE, MAIN_FUNC, FUNC, IMPORT
 
-MAIN_FUNC = '''
-package {{ package }}
 
-func main() {
-  {{ content }}
-}
-'''
-
-FUNC = '''
-func {{ name }}({{ args }}) {
-  {{ content }}
-}
-'''
-
-IMPORT = {
-    'SIGLE': '''
-import {{ imports }}
-''',
-    'MULTIPLE': '''
-import (
-  {{ imports }}
-)
-'''
-}
+def module(tokens={}):
+    return f'{tokenize(MODULE, tokens).strip()}\n'
 
 
 def main_func(tokens={}):

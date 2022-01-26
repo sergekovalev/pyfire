@@ -12,7 +12,7 @@ from parser.ts.main import main as ts_parser
 from parser.python.main import main as python_parser
 from parser.ts.ast.main import main as ts_ast
 from parser.python.ast.main import main as python_ast
-from translator.c.main import main as c_translator
+from translator.cpp.main import main as cpp_translator
 from translator.go.main import main as go_translator
 
 load_dotenv()
@@ -35,7 +35,7 @@ translator = {
     },
     'to': {
         'go': go_translator,
-        'c': c_translator,
+        'cpp': cpp_translator,
     }
 }
 
