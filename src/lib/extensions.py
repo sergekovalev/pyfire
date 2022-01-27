@@ -5,7 +5,10 @@ class List(list):
         self._index_from = index
 
     def __getitem__(self, index):
-        if self._index_from + index > len(self):
-            return super().__getitem__(self._index_from)
+        if type(index) is slice:
+            return super().__getitem__(index)
+        else:
+            if self._index_from + index > len(self):
+                return super().__getitem__(self._index_from)
 
-        return super().__getitem__(self._index_from + index)
+            return super().__getitem__(self._index_from + index)

@@ -21,6 +21,9 @@ pairs = {
     ')': [TOKENS.CLOSE_BRACKET],
     '\'': [TOKENS.SINGLE_QUOTE],
     '"': [TOKENS.DOUBLE_QUOTE],
+    ':': [TOKENS.COLON],
+    ',': [TOKENS.COMMA],
+    '.': [TOKENS.DOT]
 }
 
 

@@ -23,4 +23,4 @@ def main_func(tokens={}):
 
 
 def func(tokens={}):
-    return f'{tokenize(FUNC, tokens).trim()}\n'
+    return f'{tokenize(FUNC, tokens).strip()}\n'

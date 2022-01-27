@@ -11,11 +11,11 @@ def main_func(tokens={}):
 
 
 def func(tokens={}):
-    return f'{tokenize(FUNC, tokens).trim()}\n'
+    return f'{tokenize(FUNC, tokens).strip()}\n'
 
 
 def import_module(tokens={}):
     if len(tokens.imports) >= 1:
-        return f'{tokenize(IMPORT.MULTIPLE, tokens).trim()}\n'
+        return f'{tokenize(IMPORT.MULTIPLE, tokens).strip()}\n'
     else:
-        return f'{tokenize(IMPORT.SIGLE, tokens).trim()}\n'
+        return f'{tokenize(IMPORT.SIGLE, tokens).strip()}\n'

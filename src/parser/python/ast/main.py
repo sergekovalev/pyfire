@@ -38,7 +38,8 @@ def tree(code):
 
 def ast(code):
     return {
-        'type': 'module',
+        'type': TOKENS.MODULE,
+        'name': 'main',
         'start': code['start'],
         'end': code['end'],
         'body': tree(List(code['tokens']))

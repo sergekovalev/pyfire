@@ -1,12 +1,12 @@
 MODULE = '''
-{{ includes }}
-
+package {{ package }}
+{{ imports }}
 {{ content }}
 '''
 
 IMPORT = {
     'SIGLE': '''
-import {{ imports }}
+import {{ import }}
 ''',
     'MULTIPLE': '''
 import (
@@ -16,8 +16,6 @@ import (
 }
 
 MAIN_FUNC = '''
-package {{ package }}
-
 func main() {
   {{ content }}
 }
