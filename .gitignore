@@ -1,6 +1,6 @@
-node_modules
-__dist__
+__dist__/*
 .env
 .DS_Store
 .idea
 venv/*
+.pyfire.config.json

@@ -32,5 +32,5 @@ class Settings(object):
     def init(self, root_dir):
         self.ROOT_DIR = root_dir
         
-        with open('./config.json', 'r') as file:
+        with open('./.pyfire.config.json', 'r') as file:
             self.CONFIG = json.loads(file.read())

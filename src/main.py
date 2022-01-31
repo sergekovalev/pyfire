@@ -8,11 +8,10 @@ from time import time
 import json
 from src.lib.settings import Settings
 from lib.helpers import import_module, log
-from parser.ts.main import main as ts_parser
 from parser.python.main import main as python_parser
-from parser.ts.ast.main import main as ts_ast
 from parser.python.ast.main import main as python_ast
 from translator.cpp.main import main as cpp_translator
+from translator.c.main import main as c_translator
 from translator.go.main import main as go_translator
 
 load_dotenv()
@@ -22,11 +21,6 @@ cfg = Settings().CONFIG
 
 translator = {
     'from': {
-        'ts': {
-            'parser': ts_parser,
-            'ast': ts_ast,
-            'ext': 'ts'
-        },
         'python': {
             'parser': python_parser,
             'ast': python_ast,
@@ -35,6 +29,7 @@ translator = {
     },
     'to': {
         'go': go_translator,
+        'c': c_translator,
         'cpp': cpp_translator,
     }
 }
