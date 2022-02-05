@@ -35,6 +35,10 @@ translator = {
 }
 
 
+def create_dist_folder():
+    os.system('rm -rf __dist__ && mkdir __dist__')
+
+
 def get_source_code():
     path = f'{Settings().ROOT_DIR}/samples/code.{translator["from"][cfg["source_lang"]]["ext"]}'
     
@@ -62,20 +66,24 @@ def get_out_code(code):
     return outcode
 
 
-if __name__ == '__main__':
-    os.system('rm -rf __dist__ && mkdir __dist__')
+def copy_scripts():
+    cp_path_from = f'{Settings().ROOT_DIR}/src/translator/{cfg["target_lang"]}'
+    cp_path_to = f'{Settings().ROOT_DIR}/__dist__'
     
+    cp(f'{cp_path_from}/CMakeLists.txt', f'{cp_path_to}/CMakeLists.txt')
+    cp(f'{cp_path_from}/run.sh', f'{cp_path_to}/run.sh')
+
+
+if __name__ == '__main__':
     t = time()
+
+    create_dist_folder()
     
     source_code = get_source_code()
     parsed_code = get_parsed_code(source_code)
     ast_code = get_ast_code(parsed_code)
     out_code = get_out_code(ast_code)
     
-    cp_path_from = f'{Settings().ROOT_DIR}/src/translator/{cfg["target_lang"]}'
-    cp_path_to = f'{Settings().ROOT_DIR}/__dist__'
-    
-    cp(f'{cp_path_from}/CMakeLists.txt', f'{cp_path_to}/CMakeLists.txt')
-    cp(f'{cp_path_from}/run.sh', f'{cp_path_to}/run.sh')
+    copy_scripts()
 
     print(round((time() - t) * 1000), 'ms')
