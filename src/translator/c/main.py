@@ -3,7 +3,7 @@ import src.translator.c.templates as templates
 
 def translate(code):
     return templates.module(({
-        'includes': templates.include({'name': 'stdio'}),
+        'includes': templates.include({'name': 'stdio.h'}),
         'content': templates.main_func({'content': 'printf("hello, world");'})
     }))
 

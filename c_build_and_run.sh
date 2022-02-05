@@ -3,5 +3,6 @@
 echo "building..."
 python src/main.py
 
-#echo "running..."
-#go run __dist__/main/main.go
+echo "running..."
+cd ./__dist__
+sh run.sh

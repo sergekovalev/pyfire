@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from time import time
 import json
 from src.lib.settings import Settings
-from lib.helpers import import_module, log
+from lib.helpers import import_module, log, cp
 from parser.python.main import main as python_parser
 from parser.python.ast.main import main as python_ast
 from translator.cpp.main import main as cpp_translator
@@ -34,20 +34,48 @@ translator = {
     }
 }
 
+
+def get_source_code():
+    path = f'{Settings().ROOT_DIR}/samples/code.{translator["from"][cfg["source_lang"]]["ext"]}'
+    
+    return import_module(path)
+
+
+def get_parsed_code(code):
+    outcode = translator['from'][cfg['source_lang']]['parser'](code)
+    log(path='parsed-code.json', content=json.dumps(outcode, indent=2))
+    
+    return outcode
+
+
+def get_ast_code(code):
+    outcode = translator['from'][cfg['source_lang']]['ast'](code)
+    log(path='ast-code.json', content=json.dumps(outcode, indent=2))
+    
+    return outcode
+
+
+def get_out_code(code):
+    outcode = translator['to'][cfg['target_lang']](code)
+    log(path=f'main.{cfg["target_lang"]}', folder='src', content=outcode)
+    
+    return outcode
+
+
 if __name__ == '__main__':
     os.system('rm -rf __dist__ && mkdir __dist__')
     
     t = time()
     
-    code = import_module(f'{Settings().ROOT_DIR}/samples/code.{translator["from"][cfg["source_lang"]]["ext"]}')
+    source_code = get_source_code()
+    parsed_code = get_parsed_code(source_code)
+    ast_code = get_ast_code(parsed_code)
+    out_code = get_out_code(ast_code)
     
-    parsed_code = translator['from'][cfg['source_lang']]['parser'](code)
-    log(path='parsed-code.json', content=json.dumps(parsed_code, indent=2))
+    cp_path_from = f'{Settings().ROOT_DIR}/src/translator/{cfg["target_lang"]}'
+    cp_path_to = f'{Settings().ROOT_DIR}/__dist__'
     
-    ast_code = translator['from'][cfg['source_lang']]['ast'](parsed_code)
-    log(path='ast-code.json', content=json.dumps(ast_code, indent=2))
-    
-    output_code = translator['to'][cfg['target_lang']](ast_code)
-    log(path=f'main.{cfg["target_lang"]}', folder='main', content=output_code)
-    
+    cp(f'{cp_path_from}/CMakeLists.txt', f'{cp_path_to}/CMakeLists.txt')
+    cp(f'{cp_path_from}/run.sh', f'{cp_path_to}/run.sh')
+
     print(round((time() - t) * 1000), 'ms')

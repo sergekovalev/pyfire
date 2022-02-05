@@ -3,6 +3,7 @@ __dist__/*
 .DS_Store
 .idea
 venv/*
+*.pyc
 .pyfire.config.json
 go_build_and_run.sh
 c_build_and_run.sh
