@@ -1,4 +1,4 @@
-from src.parser.ts.tokenizer import tokenize
+from src.parser.tokenizer import tokenize
 
 parsed_code = []
 
@@ -47,8 +47,7 @@ def parse(code):
     previous_char_code = None
     lines_count = 0
     
-    for i in range(len(code)):
-        ch = code[i]
+    for ch in code:
         char_code = ord(ch)
         
         if is_sign(char_code) and not is_number(char_code):

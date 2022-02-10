@@ -1,4 +1,4 @@
-import src.parser.ts.tokens as TOKENS
+import src.parser.tokens as TOKENS
 
 
 def main(code, nodes, index_to):

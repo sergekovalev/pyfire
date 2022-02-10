@@ -1,10 +1,10 @@
-import src.parser.ts.tokens as TOKENS
+import src.parser.tokens as TOKENS
 
 pairs = {
     'number': [TOKENS.TYPE_DECLARATION, TOKENS.NUMBER],
     'string': [TOKENS.TYPE_DECLARATION, TOKENS.STRING],
     'import': [TOKENS.IMPORT],
-    'function': [TOKENS.FUNCTION_DECLARATION],
+    'def': [TOKENS.FUNCTION_DECLARATION],
     '=': [TOKENS.EQ],
     '==': [TOKENS.IS_EQ],
     '>': [TOKENS.GT],
@@ -14,12 +14,16 @@ pairs = {
     '+': [TOKENS.PLUS],
     '-': [TOKENS.MINUS],
     ';': [TOKENS.ENDL],
+    'end': [TOKENS.END_OF_BLOCK],
     '{': [TOKENS.OPEN_CURLY_BRACKET],
     '}': [TOKENS.CLOSE_CURLY_BRACKET],
     '(': [TOKENS.OPEN_BRACKET],
     ')': [TOKENS.CLOSE_BRACKET],
     '\'': [TOKENS.SINGLE_QUOTE],
     '"': [TOKENS.DOUBLE_QUOTE],
+    ':': [TOKENS.COLON],
+    ',': [TOKENS.COMMA],
+    '.': [TOKENS.DOT]
 }
 
 
@@ -36,13 +40,12 @@ def map_token(ch):
 
 
 def tokenize(code):
-    tokens = []
+    TOKENS = []
     
     for token in code:
-        tokens += map_token(token)
+        TOKENS += map_token(token)
     
-    return tokens
-
+    return TOKENS
 
 
 def main(code):

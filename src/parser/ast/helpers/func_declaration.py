@@ -1,4 +1,4 @@
-import src.parser.ts.tokens as TOKENS
+import src.parser.tokens as TOKENS
 
 
 def parse_args(code, index_from, index_to):

@@ -13,7 +13,7 @@ INCLUDE_H = '''
 '''
 
 NAMESPACE = '''
-    namespace {{ name }};
+    using namespace {{ name }};
 '''
 
 MAIN_FUNC = '''

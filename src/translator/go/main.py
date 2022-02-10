@@ -1,5 +1,5 @@
 import src.translator.go.templates as templates
-import src.parser.python.tokens as TOKENS
+import src.parser.tokens as TOKENS
 
 
 def build_module(code):
