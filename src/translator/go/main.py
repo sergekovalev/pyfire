@@ -20,6 +20,14 @@ def build_func_declaration(code):
         'args': '',
         'content': '\n'.join(translate(node) for node in body) if len(body) > 0 else ''
     })
+    
+
+def build_expr_declaration(code):
+    body = code['body']
+    
+    expr = f'{code["var_name"]} := {body[0]["value"]}'
+    
+    return expr
 
 
 def translate(code):
@@ -27,6 +35,8 @@ def translate(code):
         return build_module(code)
     elif code['type'] == TOKENS.FUNCTION_DECLARATION:
         return build_func_declaration(code)
+    elif code['type'] == TOKENS.EXPRESSION:
+        return build_expr_declaration(code)
     
     return ''
 

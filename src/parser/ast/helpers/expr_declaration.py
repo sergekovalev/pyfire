@@ -1,20 +1,12 @@
 import re
 import src.parser.tokens as TOKENS
 
-OPERATIONS = {
-    '+': TOKENS.PLUS,
-    '-': TOKENS.MINUS,
-    '*': TOKENS.MULTIPLY,
-    '/': TOKENS.DIVISION,
-    '**': TOKENS.POWER,
-}
-
 
 def define_type(expr):
     res = {'type': None, 'value': expr}
 
-    if expr in ['+', '-', '/', '*', '**']:
-        res = {'type': TOKENS.OPERATION, 'value': OPERATIONS[expr]}
+    if expr in [TOKENS.PLUS, TOKENS.MINUS, TOKENS.MULTIPLY, TOKENS.DIVISION, TOKENS.POWER]:
+        res = {'type': TOKENS.OPERATION, 'value': expr}
     elif expr == 'None':
         res['type'] = TOKENS.NULL
     elif re.match(r'\d+', expr):
@@ -32,10 +24,15 @@ def define_type(expr):
 def build_expr(tokens, index_from, index_to):
     expr = []
     
-    for i in range(len(tokens) + index_from - index_to):
-        token = tokens[i+index_from]
+    i = index_from + 2
+    length = index_to
+    
+    while i < length:
+        token = tokens[i]
         
         expr.append(define_type(token))
+        
+        i += 1
     
     return expr
 
@@ -43,11 +40,9 @@ def build_expr(tokens, index_from, index_to):
 def main(tokens, nodes, index_from, index_to):
     node = {
         'type': TOKENS.EXPRESSION,
-        'body': {
-            'var_name': tokens[1],
-            'is_const': tokens[1] == tokens[1].upper(),
-            'expr': build_expr(tokens, index_from, index_to)
-        }
+        'var_name': tokens[1],
+        'is_const': tokens[1] == tokens[1].upper(),
+        'body': build_expr(tokens, index_from, index_to)
     }
     
     nodes.append(node)
