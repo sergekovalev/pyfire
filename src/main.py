@@ -13,6 +13,7 @@ from src.parser.ast.main import main as ast
 from translator.cpp.main import main as cpp_translator
 from translator.c.main import main as c_translator
 from translator.go.main import main as go_translator
+import src.parser.tokens as TOKENS
 
 load_dotenv()
 
@@ -49,25 +50,55 @@ def get_parsed_code(code):
     return outcode
 
 
+def preset_code(code):
+    is_no_body = len(code['body']) == 0
+    is_no_root_function = False if is_no_body else code['body'][0]['type'] != TOKENS.FUNCTION_DECLARATION
+    is_no_main_function = False if is_no_body else code['body'][0]['type'] == TOKENS.FUNCTION_DECLARATION and code['body'][0]['name'] != 'main'
+    
+    if is_no_body or is_no_root_function or is_no_main_function:
+        code['body'] = [{
+            'type': TOKENS.FUNCTION_DECLARATION,
+            'name': 'main',
+            'body': code['body']
+        }]
+
+
 def get_ast_code(code):
     outcode = translator['from']['ast'](code)
+    
+    preset_code(outcode)
+    
     log(path='ast-code.json', content=json.dumps(outcode, indent=2))
     
     return outcode
 
 
+def switch_folder_name():
+    global target_lang
+
+    if target_lang == 'go':
+        return 'main'
+    
+    if target_lang in ['c', 'cpp']:
+        return 'src'
+
+
 def get_out_code(code):
-    outcode = translator['to'][cfg['target']['lang']](code)
-    log(path=f'main.{cfg["target"]["lang"]}', folder=cfg['target']['folder'], content=outcode)
+    global target_lang
+
+    outcode = translator['to'][target_lang](code)
+    log(path=f'main.{target_lang}', folder=switch_folder_name(), content=outcode)
     
     return outcode
 
 
 def copy_scripts():
-    if cfg["target"]["lang"] not in ['c', 'cpp']:
+    global target_lang
+
+    if target_lang not in ['c', 'cpp']:
         return
         
-    cp_path_from = f'{Settings().ROOT_DIR}/src/translator/{cfg["target"]["lang"]}/scripts'
+    cp_path_from = f'{Settings().ROOT_DIR}/src/translator/{target_lang}/scripts'
     cp_path_to = f'{Settings().ROOT_DIR}/__dist__'
     
     cp(f'{cp_path_from}/CMakeLists.txt', f'{cp_path_to}/CMakeLists.txt')
@@ -75,6 +106,8 @@ def copy_scripts():
 
 
 if __name__ == '__main__':
+    target_lang = cfg["target"]["lang"]
+
     t = time()
 
     create_dist_folder()

@@ -1,4 +1,5 @@
 from src.parser.tokenizer import tokenize
+from src.parser.postfix import tokenize as postfix
 
 parsed_code = []
 
@@ -67,10 +68,13 @@ def parse(code):
         
         previous_char_code = char_code
     
+    infix_tokens = tokenize(parsed_code)
+    
     return {
         'lines': lines_count,
         'code': parsed_code,
-        'tokens': tokenize(parsed_code)
+        'tokens': infix_tokens,
+        'postfix_tokens': postfix(infix_tokens)
     }
 
 

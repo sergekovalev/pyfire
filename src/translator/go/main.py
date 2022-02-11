@@ -4,7 +4,7 @@ import src.parser.tokens as TOKENS
 
 def build_module(code):
     body = code['body']
-
+    
     return templates.module({
         'package': code['name'],
         'imports': '',
@@ -14,7 +14,7 @@ def build_module(code):
 
 def build_func_declaration(code):
     body = code['body']
-
+    
     return templates.func({
         'name': code['name'],
         'args': '',

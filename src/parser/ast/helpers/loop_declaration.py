@@ -10,9 +10,4 @@ def main(code, nodes, index_to):
     }
     
     nodes.append(node)
-    
-    node = {
-        'type': TOKENS.EXPRESSION,
-    }
-    
-    nodes.append(node)
+
