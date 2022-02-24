@@ -1,9 +1,13 @@
 import src.parser.tokens as TOKENS
+import src.lib.helpers
+
+operations = []
+postfix_tokens = []
+stack = []
 
 
 def tokenize(tokens):
-    for i in range(len(tokens)):
-        if tokens[i] == TOKENS.EQ:
-            tokens[i-1], tokens[i] = tokens[i], tokens[i-1]
+    for token in tokens:
+        postfix_tokens.append(token)
 
-    return tokens
+    return postfix_tokens

@@ -1,10 +1,10 @@
-import src.translator.c.templates as templates
+import src.translator.c.patterns as templates
 
 
 def translate(code):
-    return templates.module(({
-        'includes': templates.include({'name': 'stdio.h'}),
-        'content': templates.main_func({'content': 'printf("hello, world");'})
+    return patterns.module(({
+        'includes': patterns.include({'name': 'stdio.h'}),
+        'content': patterns.main_func({'content': 'printf("hello, world");'})
     }))
 
 

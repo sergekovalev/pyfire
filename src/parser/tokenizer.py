@@ -5,7 +5,7 @@ pairs = {
     'string': [TOKENS.TYPE_DECLARATION, TOKENS.STRING],
     'import': [TOKENS.IMPORT],
     'def': [TOKENS.FUNCTION_DECLARATION],
-    '=': [TOKENS.VARIABLE_DECLARATION, TOKENS.EQ],
+    '=': [TOKENS.EQ],
     '==': [TOKENS.IS_EQ],
     '>': [TOKENS.GT],
     '>=': [TOKENS.GTE],

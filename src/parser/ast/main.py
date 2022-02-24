@@ -15,20 +15,20 @@ def create_node(nodes, code, index_from, index_to):
         expr_declaration_helper(code, nodes, index_from, index_to)
 
 
-def tree(code):
+def tree(tokens):
     nodes = []
     
     index_from = 0
     
-    for i in range(len(code)):
-        token = code[i]
+    for i in range(len(tokens)):
+        token = tokens[i]
         
         if token == TOKENS.ENDL:
             index_to = i
 
-            code.set_index_from(index_from)
-            create_node(nodes, code, index_from, index_to)
-            code.set_index_from(0)
+            tokens.set_index_from(index_from)
+            create_node(nodes, tokens, index_from, index_to)
+            tokens.set_index_from(0)
             
             index_from = index_to
     

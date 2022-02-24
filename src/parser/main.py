@@ -74,7 +74,7 @@ def parse(code):
         'lines': lines_count,
         'code': parsed_code,
         'tokens': infix_tokens,
-        'postfix_tokens': postfix(infix_tokens)
+        'postfix_tokens': postfix(infix_tokens.copy())
     }
 
 

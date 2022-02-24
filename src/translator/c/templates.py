@@ -1,5 +1,5 @@
 from src.lib.helpers import tokenize
-from src.translator.c.patterns import MODULE, INCLUDE, INCLUDE_H, MAIN_FUNC, FUNC
+from src.translator.c.patterns.basics import MODULE, INCLUDE, INCLUDE_H, MAIN_FUNC, FUNC
 
 
 def module(tokens={}):

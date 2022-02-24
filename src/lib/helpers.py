@@ -60,3 +60,11 @@ def find_in_list(lst, fn):
     filtered = list(filter(fn, lst))
 
     return filtered[0] if len(filtered) > 0 else None
+
+
+def is_number(n):
+    return re.match(r'\d+', n) or re.match(r'\d+\.\d+', n)
+
+
+def is_string(n):
+    return re.match(r'".*"', n) or re.match(r'\'.*\'', n)
