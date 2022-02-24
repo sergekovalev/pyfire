@@ -40,12 +40,12 @@ def map_token(ch):
 
 
 def tokenize(code):
-    TOKENS = []
+    tokens = []
     
     for token in code:
-        TOKENS += map_token(token)
+        tokens += map_token(token)
     
-    return TOKENS
+    return tokens
 
 
 def main(code):

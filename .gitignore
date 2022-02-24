@@ -6,6 +6,4 @@ venv/*
 samples/*
 *.pyc
 .pyfire.config.json
-go_build_and_run.sh
 c_build_and_run.sh
-cpp_build_and_run.sh
